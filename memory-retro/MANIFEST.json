@@ -1,0 +1,55 @@
+{
+  "base": {
+    "interface_sha256": "a40e530a26d92b749c7f79c54eb1b4cd7bce04f7942e9a303733a1e402e6b9b0",
+    "manifest_sha256": "10ba805c736495ede2469da1308590f6500ef62427145d5d64f252b64b6a2c37",
+    "version": "agape.base.v0"
+  },
+  "conflicts": [],
+  "created_utc": "2026-10-27T03:35:43.310489Z",
+  "entrypoint": {
+    "callable": "run",
+    "path": "payload/memory_retro.py",
+    "protocol": "agape.mod.call.v0"
+  },
+  "files": [
+    {
+      "bytes": 2964,
+      "path": "payload/README.txt",
+      "sha256": "b08d3b7482d3dd6791393e33e80e91a4b9ebf0809d4521cd1377c4a5485681ed"
+    },
+    {
+      "bytes": 9842,
+      "path": "payload/fixtures.py",
+      "sha256": "0520e52c3def12db71b61274dc8a854bd0e9c7fcb52111c788111832faf5ef0d"
+    },
+    {
+      "bytes": 23428,
+      "path": "payload/memory_retro.py",
+      "sha256": "c02734f6973bb6da257121d2737c401c81f47187ec69d603a877a72f380fe166"
+    },
+    {
+      "bytes": 7426,
+      "path": "payload/test_memory_retro.py",
+      "sha256": "38bbe61de0a7dcdaa376b540adfc6ede557d17670af80c145ec93db4279b62e2"
+    }
+  ],
+  "header": "Grok Bot - ROUND-SEAT",
+  "inputs": [
+    "agape.memretro.request.v0"
+  ],
+  "mod_id": "memory-retro",
+  "named_point": "NP-20261026T170000Z",
+  "outputs": [
+    "agape.memretro.result.v0"
+  ],
+  "requires": [],
+  "runtime": {
+    "dependencies": "stdlib",
+    "filesystem": "none",
+    "language": "python3",
+    "network": false,
+    "processes": false
+  },
+  "schema": "agape.mod.v0",
+  "version": "0.1.0"
+}

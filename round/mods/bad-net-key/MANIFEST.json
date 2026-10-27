@@ -1,0 +1,45 @@
+{
+  "base": {
+    "interface_sha256": "a40e530a26d92b749c7f79c54eb1b4cd7bce04f7942e9a303733a1e402e6b9b0",
+    "manifest_sha256": "10ba805c736495ede2469da1308590f6500ef62427145d5d64f252b64b6a2c37",
+    "version": "agape.base.v0"
+  },
+  "conflicts": [],
+  "created_utc": "2026-10-26T17:57:00.467602Z",
+  "entrypoint": {
+    "callable": "run",
+    "path": "payload/fetch.py",
+    "protocol": "agape.mod.call.v0"
+  },
+  "files": [
+    {
+      "bytes": 255,
+      "path": "payload/README.txt",
+      "sha256": "56c87c902be042f61f11375bc4a28348e3567d18f70f60357b3d25bbc0797a68"
+    },
+    {
+      "bytes": 250,
+      "path": "payload/fetch.py",
+      "sha256": "1b0566f04f824a739342d40364cc27d99343dfd39efce940efed27364647f8f6"
+    }
+  ],
+  "header": "Grok Bot - ROUND-SEAT",
+  "inputs": [
+    "agape.demo.request.v0"
+  ],
+  "mod_id": "bad-net-key",
+  "named_point": "NP-20261026T170000Z",
+  "outputs": [
+    "agape.demo.result.v0"
+  ],
+  "requires": [],
+  "runtime": {
+    "dependencies": "stdlib",
+    "filesystem": "none",
+    "language": "python3",
+    "network": false,
+    "processes": false
+  },
+  "schema": "agape.mod.v0",
+  "version": "0.1.0"
+}
