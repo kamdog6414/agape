@@ -1,0 +1,12 @@
+[Unit]
+Description=agape-eta forecast pass (headless, stdlib, no LLM)
+[Service]
+Type=oneshot
+WorkingDirectory=%h/agape-eta
+ExecStart=/usr/bin/python3 -B %h/agape-eta/eta_run.py run
+MemoryMax=128M
+CPUWeight=10
+Nice=19
+IOSchedulingClass=idle
+StandardOutput=null
+TimeoutStartSec=120

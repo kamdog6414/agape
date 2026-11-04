@@ -1,0 +1,16 @@
+{
+ "altered_record_index": 681,
+ "device": "NIKOLAI",
+ "device_status": "FAIL WITNESS FAIL: witnessed record 681 changed/forked: now c23e5cea60e3b2c6, witnessed a88b3700cf4f1755 at round 20261104T062454Z",
+ "expected": "FAIL:NIKOLAI",
+ "flags": [
+  "FAIL:NIKOLAI"
+ ],
+ "note": "copy only; verdicts.jsonl NOT appended",
+ "result": "PASS",
+ "sat": "ROACH",
+ "source": "<TAILNET-IP>",
+ "source_sha256": "bb242550dcf0fdf05999c071b558094cff3bf748542f0b2bcad58c0470697e2f",
+ "test": "tamper-detect",
+ "ts": "2026-11-04T06:29:31Z"
+}

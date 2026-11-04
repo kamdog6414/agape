@@ -1,0 +1,59 @@
+{
+ "files": {
+  "eta.py": "34f2693cf5b38fb73a6539e41c506b45a53e2f6ebe116db37f96ae37d59bcd02",
+  "eta_run.py": "6d2b6584348b4e2b165fcf81ba3c8923342186e16a96c9a9ac2297d61ce87c10",
+  "learn.py": "5b5c63323d6fada063ede32939848df045595e97f7222803bb6a7d8cdb5bed29",
+  "qgate.py": "5135855573538fe9ef656e728daab4d878224ad9d240a232a656c616c94f1880",
+  "qualfix/LIVE-copy-20261104T1005.log": "0d4536eb1fa08c345bda5fb70b161809f09b02350b55e79e9ffd1739a2124429",
+  "qualfix/wikidb-roach-forecasts.jsonl": "4473e75d643f210c65b4cdc68cde39d6b634ec3aa31a41c7a8231c5225391ece",
+  "seed-20261104.json": "67501143bf75aa9c39cf66fa27ac06da57d4445f4a95d4937efd719506652d0a",
+  "seed.py": "48fb0d1963aa4313d5ab2ef647fac824de7f666d309064ccdbff4875c9ed72a6",
+  "top.py": "19df4f5b048d3c693d6ea15fe673a52d112e00ff39f87db0ace25da4c2b9f134"
+ },
+ "manifest_hash": "48b42a2063214bc8ff2c5ecfaf0d1865b82ef3c7bfc0465573b876b20e356f7e",
+ "node": "nikolai",
+ "os_release": "Ubuntu 26.04.1 LTS; kernel 6.8.0-147-generic",
+ "python": "3.14.4",
+ "qualified_at": "2026-11-04T11:17:50-08:00",
+ "qualify_record_hash": "6a716821363cb60c215f53a8949954f60f52bea9730ac1229b10c28697f7c528",
+ "suite": [
+  {
+   "check": "R1 replay wikidb-roach forecasts from fixture log",
+   "verdict": 0
+  },
+  {
+   "check": "R2 replay calibration SCOREs (wikidb-roach, SAT copy, SAT sha, + local)",
+   "verdict": 0
+  },
+  {
+   "check": "R3 seed scores present with cited finish (incl. SAT copy, SAT sha)",
+   "verdict": 0
+  },
+  {
+   "check": "R4 replay OBS throughput",
+   "verdict": 0
+  },
+  {
+   "check": "R5 replay scores.jsonl",
+   "verdict": 0
+  },
+  {
+   "check": "H chain forecasts.jsonl",
+   "verdict": 0
+  },
+  {
+   "check": "H chain scores.jsonl",
+   "verdict": 0
+  },
+  {
+   "check": "H chain calibration.jsonl",
+   "verdict": 0
+  },
+  {
+   "check": "T top.py --once",
+   "verdict": 0
+  }
+ ],
+ "tool_version": "agape-eta 0.4.0-gate",
+ "v": 1
+}
