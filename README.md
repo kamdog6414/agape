@@ -42,6 +42,13 @@ dependencies.
     memory-retro/  an agape.mod.v0 package: a deterministic scorer for
                    memory continuity and context usage, run here only on
                    synthetic fixtures
+    hub/muse-hub/  the witness hub: round runner, chainer, status
+    xchain/        the chain: v0 runner, v1 runtime with baseline +
+                   crosscheck, payload helpers, tests
+    gadgets/       per-gadget code: roach/ (satellite checker, verify
+                   library, tamper evidence), hazels-tv/ (link watchdog)
+    docs/          ATOM-BASELINE.md (method) and reports/ (dated build
+                   receipts for xchain, musehub, the witness hub)
     demo.py        end-to-end demo
     run_tests.py   runs every test and the demo
 
@@ -71,6 +78,120 @@ On Linux with unprivileged user namespaces, round judging can record
 offline evidence from a child network namespace (judge --netns). Where
 unshare is missing or refused, the evidence says so and the verdict is
 NOT_PROVEN_OFFLINE; the tests accept either.
+
+## The witness hub (QUICK)
+
+Three small machines watch each other keep a hash chain, so no single
+machine's record has to be taken on its own word.
+
+```
+NIKOLAI   a Linux desktop. Runs the hub: every 600 seconds it collects
+          each gadget's current chain head, stamps one XCHAIN round
+          across all of them, and verifies every stamped chain on the
+          box that produced it.
+Roach     a Linux desktop. Stamps its own chain locally, and runs an
+          independent satellite checker (below).
+hazels-tv a Fire TV. The third gadget. Reached through Roach; stamps
+          whenever it answers. It is an optional member: the TV gets
+          turned off, and a dark TV is a normal state, never a fault.
+```
+
+Core members are NIKOLAI and Roach. A round is complete when every core
+member has stamped inside one window and each stamp cites the others.
+A member that does not answer is omitted from that round — partial
+rounds are honest rounds. A member that stamps but fails verification
+fails the round: absence is fine, bad evidence is not.
+
+The chainer (hub/muse-hub/chainer.py) reads the members' chain tails
+and maintains the public chain state: members, current heads, the last
+complete round. It never writes a member's ledger. Read-only on every
+member, always.
+
+A fourth witness stands outside the hub: the pi-2 post on SAT, a laptop
+running an independent witness on a two-minute cadence. It watches the
+movement; it is not a hub member and does not stamp hub rounds.
+
+Status at the time of writing (2026-11-04): hub LIVE, rounds passing
+with all three gadgets stamping. The hub chain is anchored at named
+point NP-20261027T185410Z, which chains to genesis NP-20261026T170000Z.
+
+Code in this repository: hub/muse-hub/ (round runner, chainer, status),
+gadgets/roach/ (satellite), gadgets/hazels-tv/ (TV link watchdog),
+docs/reports/ (build receipts for xchain v0/v1, musehub v0, the hub).
+
+## XCHAIN and the atom baseline
+
+XCHAIN (xchain/) is the chain the hub stamps. One implementation,
+deployed on every gadget:
+
+- Each device keeps its own append-only chain of round records
+  (xchain.jsonl). A record names the device, its previous record's
+  hash, and the current heads of every peer it has seen.
+- A round is the set of records stamped inside one window, each citing
+  the others' heads. Verification is recompute: re-hash every record,
+  check every link, check that the cited peer heads match the peers'
+  own chains. No trust, no scores — the hashes agree or they do not.
+- Sources are read-only and the chain is additive only. Nothing is
+  edited or deleted; a correction is a new record that supersedes.
+
+The atom baseline is the fixed starting configuration the chains are
+checked against: one baseline manifest, pinned in code, verified by
+xchain/v1/test_baseline.sh. If a device's baseline does not match the
+pin, the round does not proceed.
+
+The satellite (gadgets/roach/satellite.py) is a second, independent
+checker. It pulls the coordinator's ledger and the peer chains
+read-only over a signed link, verifies them itself, cross-checks the
+other satellite's verdicts, and appends verdicts only to its own
+hash-chained log. Its flags are plain: DISAGREE, ATOM_BREAK, STALE,
+LEDGER_BREAK. Two checkers that do not share code paths agreeing on a
+chain is the strongest statement this system makes.
+
+Anchor root, 2026-11-04 (method only): six anchor records from the
+fleet's shared-room seal round — three events and three bundles — were
+sorted by hash and hashed as one compact JSON array (UTF-8, no
+trailing newline):
+
+    sha256(json_array_of_6_hashes_sorted) =
+    07b1bb90149ff0e24e4dbf5902dcbfdbf3d81f89132cd572cecd25a7fb2b56ce
+
+Four seats recomputed the same root independently and agreed; the one
+divergent seal was traced to a different encoding of the same six
+hashes and reconciled as a separate record, not edited. The root is an
+address for that moment of agreement. The records it names are not in
+this repository.
+
+## Run / replay the hub
+
+Everything is Python 3 standard library. No network services, no paid
+APIs, no dependencies to install.
+
+Baseline first — prove the starting configuration before any round:
+
+```
+xchain/v1/test_baseline.sh        # atom baseline tests
+python3 -B run_tests.py           # the Agape suite (repo root)
+```
+
+One hub round, on the hub machine (NIKOLAI's role):
+
+```
+python3 hub/muse-hub/hub_round.py   # collects heads, stamps one round,
+                                    # verifies each chain on its own box
+python3 hub/muse-hub/hub_status.py  # members, heads, last complete round
+```
+
+Run resident, hub_round.py repeats on its 600-second cadence and logs
+one line per round. Roach's satellite runs on its own cadence and
+appends one verdict line per check to its verdicts log.
+
+Replay is the verification path run backwards: take any recorded round,
+recompute every hash and every link from the raw records, and compare
+against the heads the round claimed. The chainer does this continuously
+against the live chains. To see the failure mode, copy one round record,
+change one byte, and re-verify: the recompute disagrees and the record
+is flagged. A worked example ships in gadgets/roach/tamper-detect-
+20261104T062931Z.json — one altered record, detected.
 
 ## Genesis named point
 
@@ -103,6 +224,26 @@ Before the new point (prior work, not in this repository):
     - The idea of named points and hash pins (the
       fullcircle.named-point.v1 manifest format string used here comes
       from that earlier work).
+
+- FC-Link (fclink 1.x, 2026-10-23 to 2026-10-25): the signed,
+  hash-stamped file link between machines that the hub's read lanes
+  and the satellite's pulls still ride on. Prior work; the hub was
+  built on top of it, not instead of it.
+
+- The first cross-witness rounds (2026-10-25): two machines checking
+  each other's chain heads and filing the comparison. The witness hub
+  is this idea made resident and continuous.
+
+- The Fire TV hub app (built 2026-10-26, before kickoff): the Android
+  helper that lets a television hold a chain and stamp rounds as a
+  gadget. Prior work. hazels-tv's watchdog in this repository
+  (gadgets/hazels-tv/) is in-window; the app itself is cited here, not
+  shipped.
+
+- The three machines themselves: salvaged and refurbished desktops
+  and a television, in service before the event. The hardware is prior
+  work by definition; what was built in-window is the software and the
+  method above.
 
 After the new point (in-window, everything in this repository):
 
@@ -146,4 +287,6 @@ attribution of who wrote each part.
 
 ## License
 
-No license file is included yet.
+MIT — see LICENSE.
+
+Copyright 2026 Kamron Noah Dabe / FullCircle.

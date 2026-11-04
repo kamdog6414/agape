@@ -6,9 +6,10 @@ Verdicts everywhere: HOLDS / FAIL / UNKNOWN. Unverifiable = UNKNOWN.
 
 STATUS OF THIS FOLDER
 ---------------------
-  Local branch demo-20261104 only. Not pushed. Not yet public.
-  Rules require a public open-source repo and a 3-minute video:
-  both are UNKNOWN / TODO and need Kam's go.
+  PUBLIC. This folder is part of github.com/kamdog6414/agape,
+  main @ ca32251172bf5122b11449a01a2ae81b1b965659, pushed
+  2026-11-04 13:13 PST on the founder's order, hashes left in.
+  The 3-minute video is still TODO: filming 2026-11-04 afternoon.
 
 1. WITNESS HUB (three gadgets)
 ------------------------------
