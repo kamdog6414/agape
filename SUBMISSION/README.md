@@ -7,9 +7,11 @@ Verdicts everywhere: HOLDS / FAIL / UNKNOWN. Unverifiable = UNKNOWN.
 STATUS OF THIS FOLDER
 ---------------------
   PUBLIC. This folder is part of github.com/kamdog6414/agape,
-  main @ ca32251172bf5122b11449a01a2ae81b1b965659, pushed
-  2026-11-04 13:13 PST on the founder's order, hashes left in.
-  The 3-minute video is still TODO: filming 2026-11-04 afternoon.
+  first pushed 2026-11-04 13:13 PST on the founder's order,
+  hashes left in; demo record added 2026-11-04 ~17:45 PST.
+  The 3-minute video is DONE: filmed 2026-11-04 afternoon (the
+  take, 16:21-16:49 PST). The video file is not in git — its
+  sha256 and the full demo record are in demo/DEMO-TIMELINE.md.
 
 1. WITNESS HUB (three gadgets)
 ------------------------------
@@ -62,6 +64,32 @@ STATUS OF THIS FOLDER
   REPORT-20261026-0032-castor-bench-check.md (see RECEIPTS-INDEX.txt).
   Castor code is not in this folder. Details beyond the receipts: UNKNOWN.
 
+6. RESIDENT WITNESSES
+---------------------
+  Built 2026-11-04. Each gadget assembles its own local evidence
+  and calls the Meta Model API itself: NIKOLAI via muse-spark-1.3,
+  ROACH via muse-wonder-1.0; a desk auditor (Muse Wonder)
+  cross-checks each pair. Residents file verdicts only — they
+  never act. Per-box key file, per-box spend ledger, fail-closed
+  caps. First live pair 2026-11-04 14:17:59 PST: ROACH
+  WITNESS-FINDING, NIKOLAI WITNESS-UNKNOWN; desk cross-check
+  CROSS-SPLIT (no fact conflict). Code + all posts + both
+  cross-checks: demo/resident-witness/
+
+7. THE DEMO — THE TAKE (2026-11-04, 16:21-16:49 PST)
+----------------------------------------------------
+  One room, one take: the founder cut ROACH's WiFi by hand on
+  camera. Hub chain-state went DEGRADED (ROACH + hazels-tv DARK,
+  read 16:40:57), the CastorLTE board kept taking rows over the
+  wired 77-segment (rows n=84-86), and the hub returned LIVE on
+  its own by 16:43:26 — dark window about 2.5 minutes, no
+  restarts. Post-take resident passes + cross-check filed the
+  same afternoon. Full verified timeline, the honest
+  non-claims, and every artifact hash: demo/DEMO-TIMELINE.md.
+  Cue sheet / one-room plan: demo/ATTACK-DEMO-CUESHEET-20261104.md.
+  Board rows 80-92: demo/castor-rows-80-92.json.
+  Portal write-up: ../SUBMISSION/WRITEUP.md (this folder).
+
 PRIOR WORK vs BUILT DURING THE EVENT (Oct 26 - Nov 4, 2026)
 -----------------------------------------------------------
   PRIOR WORK (before 2026-10-26, declared, not demoed as new):
@@ -72,14 +100,24 @@ PRIOR WORK vs BUILT DURING THE EVENT (Oct 26 - Nov 4, 2026)
     2026-10-28  witness hub v0 (this repo, first commit a1df135)
     2026-10-26..11-04  receipts in RECEIPTS-INDEX.txt
     2026-11-04  agape-eta 0.4.0 config gate, SAT implant + SAT-2GB baseline
+    2026-11-04  resident witnesses (NIKOLAI Spark / ROACH Wonder /
+                desk auditor), first live pairs + cross-checks
+    2026-11-04  the demo take: live WiFi cut, hub DEGRADED -> LIVE
+                self-recovery, post-take resident cross-check
   Official window start: UNKNOWN in this repo (board says ~10 AM PDT 10-26).
   Exact creation date of each item above beyond the receipts: UNKNOWN.
 
 FILES
 -----
   README.md            this file
+  WRITEUP.md           portal write-up: problem, Meta tooling, what's next
   RECEIPTS-INDEX.txt   sha256, bytes, path of NIKOLAI ~/grok-reports 20261026-20261104
   code/agape-eta/      ETA code, units, QUALIFIED.json, SHA256SUMS
   code/sat-implant/verify.py   SAT implant verifier (stdlib, offline)
+  demo/                DEMO-TIMELINE.md (what actually happened),
+                       ATTACK-DEMO-CUESHEET-20261104.md,
+                       castor-rows-80-92.json,
+                       resident-witness/ (both scripts, 4 posts,
+                       2 desk cross-checks)
   SHA256SUMS           sha256 of every file in this folder
 No keys, tokens, credentials, or ~/.ssh content are included.

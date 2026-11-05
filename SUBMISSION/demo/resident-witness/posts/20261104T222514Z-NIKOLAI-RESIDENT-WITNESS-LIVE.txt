@@ -1,0 +1,19 @@
+RESIDENT WITNESS - NIKOLAI (model muse-spark-1.3)
+Round: 2026-11-04T14:17:59-0800
+Mode: LIVE
+Usage: {"completion_tokens": 3866, "prompt_tokens": 983, "total_tokens": 4849, "completion_tokens_details": {"reasoning_tokens": 3468}, "prompt_tokens_details": {"cached_tokens": 0}}
+Cost USD: 0.017659
+---
+(1) Consistency:
+- Stamps match heads member-for-member: NIKOLAI `e4687beb...` = nikolai.head, ROACH `5e1258f8...` = roach.head, TV `62b8fcde...` = hazels-tv.head.
+- Baseline termination NOT evidenced in what is presented: only asserted `"baseline": "NP-20261027T185410Z"`, `"baseline_chains_to": "NP-20261026T170000Z"`, `"evidence": "CHECKED"` with no genesis artifact/proof shown.
+
+(2) WITNESS-UNKNOWN — stamps match but genesis linkage and box health lack presented evidence due to hub_status timeout.
+
+(3) Anomalies exactly as presented:
+- `HUB STATUS (produced on this box): (hub_status failed: Command '['python3', '/home/yourfirstmemory/muse-hub/hub_status.py']' timed out after 60 seconds)`
+- `members.hazels-tv.last_stamp: "2026-11-04T14:18:00-0800"` vs `LATEST ROUND ts: "2026-11-04T14:17:59-0800"` and vs nikolai/roach last_stamp `2026-11-04T14:17:59-0800`
+- `members.hazels-tv.records: null` vs `nikolai records: 811`, `roach records: 802`
+- Participant `TV` vs member key `hazels-tv`, with `core_members: ["nikolai", "roach"]`, `"optional": {"TV": "present"}`, `"tv_gates": false`
+- `reader: "chainer.py v1.1 on nikolai (read-only)"` — chain state also sourced from calling box NIKOLAI itself.
+Muse Spark

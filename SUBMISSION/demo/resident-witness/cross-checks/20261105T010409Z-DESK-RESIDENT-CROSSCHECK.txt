@@ -1,0 +1,15 @@
+DESK RESIDENT CROSS-CHECK - QUICK witness hub (post-take receipt)
+Auditor: DESK resident (desk VM), model muse-spark-1.3 via desk call.py (label desk-resident-auditor)
+Round: 2026-11-04T16:59:19-0800 (NIKOLAI) / 2026-11-04T16:59:20-0800 (ROACH) - first resident pair filed after the filmed attack demo
+Take timeline (desk-verified): last complete pre-attack round 16:39:09 PST PASS, all three stamps; chain-state DEGRADED 16:40:57 PST, roach DARK; mesh LIVE restored 16:43:26 PST; first complete post-recovery round 16:49:14 PST; take screencast sha256 93e52b75662096aa9bdbb8d0fe87126710af52df4c7038f0c49e75312a9a9a88
+NIKOLAI post: 20261105T010121Z-NIKOLAI-RESIDENT-WITNESS-LIVE.txt sha256 094b0e7e6d9fa88dc4164f0f8553dbd1a7053085a8e1caa9f5f7f89b7e0afdaf verdict WITNESS-UNKNOWN cost USD 0.013205
+ROACH post: 20261105T010036Z-ROACH-RESIDENT-WITNESS-LIVE.txt sha256 388f4babcd32b044f4f0e1b2e4a00fd3bb02697066d15e2d2275527aed67540f verdict WITNESS-FINDING cost USD 0.142232
+Auditor cost USD: 0.028681
+Cross verdict: CROSS-SPLIT
+---
+(1) Differ because evidence differed, not a direct fact conflict on the same comparison. NIKOLAI was given LATEST ROUND ts 2026-11-04T16:59:19-0800 stamps `a01f6fc94743a490e9293d930db8a26e6c9f98f1defd83790ca86af4d77f337c` / `16eea864cde9ab156f9d967452e27784b647f46e096c82bdeee78624a9af41e7` / `bd41f3b109edf8e00df5c8ad905936098c0d046e8f89a50b61ae6c2a644580c3` vs CHAIN STATE `as_of: 2026-11-04T16:59:08-0800` heads `63823e64cce87d6681e680f254d602dd2a58b3a612e7848437f14632dcc3db8c` / `6c09290586e9826391d743bba8eb7f54043e849a8d797ce71ca6fce67dc58306` / `63ca944632ee173aab7fbed61749c4ec3d432181a47f3d2be7a640301a6f1499` with `last_complete_round: 2026-11-04T16:49:14-0800` + `hub_status failed: timed out after 60 seconds`. ROACH was given Round 2026-11-04T16:59:20-0800 = 00:59:20Z latest peers NIKOLAI `53abf2f9…`, SOV `ceefdbf7…`, TV `63ca9446…` vs satellite tips at 00:15Z `965eb71b…` / `20c06873…` / `5c8241e4…` or 23:45Z and satellite verdict 00:30:11Z + SOAP `n=4, 2026-11-03T22:25:18-0800`, SAT with no tip, SOV lag 15:45 vs 16:15. The one value in both posts — `63ca944632ee173aab7fbed61749c4ec3d432181a47f3d2be7a640301a6f1499` in NIKOLAI = `63ca9446…` in ROACH — agrees, as NIKOLAI's stale hazels-tv head = ROACH's TV peer, so no factual conflict on that hash.
+
+(2) CROSS-SPLIT - Both report no-match but on disjoint comparators with incompatible bases: NIKOLAI WITNESS-UNKNOWN on desk-verified stale local read vs ROACH WITNESS-FINDING on predating off-hub satellite.
+
+(3) NIKOLAI pipeline: fix `hub_status.py` 60s timeout and enforce fresh CHAIN STATE `as_of >= round ts` so 16:59:19 stamps are not judged against 16:49:14 heads. ROACH pipeline: scope evidence to QUICK hub NIKOLAI/ROACH/hazels-tv-TV at 00:59:20Z with single self_head and recomputable linkage, not satellite SOV/SOAP/SAT tips and 00:30:11Z verdict.
+Muse Spark

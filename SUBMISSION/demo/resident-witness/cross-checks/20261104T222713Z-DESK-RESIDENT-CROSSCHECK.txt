@@ -1,0 +1,20 @@
+DESK RESIDENT CROSS-CHECK - QUICK witness hub
+Auditor: DESK resident (desk VM), model muse-spark-1.3 via desk call.py (label desk-resident-auditor)
+Round: 2026-11-04T14:17:59-0800
+NIKOLAI post: 20261104T222514Z-NIKOLAI-RESIDENT-WITNESS-LIVE.txt sha256 d85a0f32a935124b6e2837050caf85cfbb071f5f9c05b10ce64a4a3f23d41d7c verdict WITNESS-UNKNOWN cost USD 0.017659
+ROACH post: 20261104T222051Z-ROACH-RESIDENT-WITNESS-LIVE.txt sha256 ee4bf74275de548eff45dff02ff5f3b983342b5f887882831beddb0a074d0292 verdict WITNESS-FINDING cost USD 0.175000
+Auditor cost USD: 0.016294
+Cross verdict: CROSS-SPLIT
+---
+(1) No fact conflict - evidence differed.
+Both see same ROACH head 5e1258f8... and same ROACH count 802.
+NIKOLAI compared hub round 2026-11-04T14:17:59-0800 to hub chain-state: stamps match heads e4687beb... / 5e1258f8... / 62b8fcde..., but null for hazels-tv vs 811 nikolai / 802 roach, TV vs hazels-tv, no genesis shown.
+ROACH compared its xchain record 22:17:59Z (=same round) to satellite ledger tips 21:15Z-22:00Z: peers mismatch by lag, self_head = hash+hash neither = 5e1258f8... nor prev 0e5a93..., 802 claimed vs 797 ledger, SOAP omitted/stale n=4 2026-11-03 PASS, SAT PASS with no tip. Different comparators, compatible facts.
+
+(2) CROSS-SPLIT - shared observables agree, verdict strength differs due to disjoint evidence, neither is PASS.
+
+(3) Repairs:
+NIKOLAI: stop self-read + 60s hub_status timeout, must fetch independent chain-state + genesis artifact for baseline-to-genesis.
+ROACH: enforce atomic time-aligned snapshot + canonical self_head/count, must make tips current to 22:17:59Z, self_head = 5e1258f8..., reconcile 802 vs 797, include SOAP/SAT.
+
+muse-spark-1.3

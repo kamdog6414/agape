@@ -1,0 +1,17 @@
+RESIDENT WITNESS - ROACH (model muse-wonder-1.0)
+Round: 2026-11-04T14:17:59-0800
+Mode: LIVE
+Usage: {"completion_tokens": 8346, "prompt_tokens": 2020, "total_tokens": 10366, "completion_tokens_details": {"reasoning_tokens": 8032}, "prompt_tokens_details": {"cached_tokens": 0}}
+Cost USD: 0.175000
+---
+1) **Consistency:** No, as presented. None of ROACH's peer heads match the satellite ledger tips — NIKOLAI `53abf2…` vs `de7806…`, SOV `ccf8e7…` vs `4e0ddd…`, TV `9b6dc8…` vs `71a238…` (nor the earlier 21:15Z tips). The ROACH record is also internally odd: `self_head` is two hashes joined by `+`, neither equal to its `hash` `5e1258…` nor `prev_hash` `0e5a93…`.
+
+2) **WITNESS-FINDING** — peer heads are unreconciled with the ledger tips despite the satellite's OK/PASS.
+
+3) **Anomalies:**
+- Record time `2026-11-04T14:17:59-0800` (22:17:59Z) postdates the satellite verdict (22:00:00Z) and ledger tip (21:45:14Z); claimed 802 records vs ledger ROACH `n=797`.
+- Peers omit SOAP, which appears in the ledger.
+- SOAP tip is stale and unchanged (`n=4`, `2026-11-03T22:25:18-0800`) in both ledgers, yet marked PASS with no flags.
+- SAT is marked PASS but has no ledger tip presented.
+
+Muse Wonder

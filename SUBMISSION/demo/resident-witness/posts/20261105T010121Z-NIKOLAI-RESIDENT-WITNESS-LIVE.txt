@@ -1,0 +1,21 @@
+RESIDENT WITNESS - NIKOLAI (model muse-spark-1.3)
+Round: 2026-11-04T16:59:19-0800
+Mode: LIVE
+Usage: {"completion_tokens": 2820, "prompt_tokens": 976, "total_tokens": 3796, "completion_tokens_details": {"reasoning_tokens": 2217}, "prompt_tokens_details": {"cached_tokens": 0}}
+Cost USD: 0.013205
+---
+(1) Consistency as presented:
+- No member-for-member match. LATEST ROUND stamps vs CHAIN STATE `head`:
+ NIKOLAI `a01f6fc94743a490e9293d930db8a26e6c9f98f1defd83790ca86af4d77f337c` != nikolai `63823e64cce87d6681e680f254d602dd2a58b3a612e7848437f14632dcc3db8c`
+ ROACH `16eea864cde9ab156f9d967452e27784b647f46e096c82bdeee78624a9af41e7` != roach `6c09290586e9826391d743bba8eb7f54043e849a8d797ce71ca6fce67dc58306`
+ TV `bd41f3b109edf8e00df5c8ad905936098c0d046e8f89a50b61ae6c2a644580c3` != hazels-tv `63ca944632ee173aab7fbed61749c4ec3d432181a47f3d2be7a640301a6f1499`
+ Note: CHAIN STATE `as_of: 2026-11-04T16:59:08-0800` predates LATEST ROUND `ts: 2026-11-04T16:59:19-0800`, and reflects `last_complete_round: 2026-11-04T16:49:14-0800`.
+- Baseline termination not evidenced in what is presented. Only strings `baseline: NP-20261027T185410Z`, `baseline_chains_to: NP-20261026T170000Z`, and `evidence: CHECKED` are given, no genesis hash/linkage/proof to verify.
+
+(2) WITNESS-UNKNOWN — basis: stale read + hub_status timeout prevents independent reconciliation.
+
+(3) Anomalies exactly as presented:
+- `HUB STATUS (produced on this box): (hub_status failed: Command '['python3', '/home/yourfirstmemory/muse-hub/hub_status.py']' timed out after 60 seconds)`
+- `as_of: 2026-11-04T16:59:08-0800` is 11s before round `ts: 2026-11-04T16:59:19-0800`, heads are ~10m stale vs `last_complete_round`
+- participant name `TV` vs member key `hazels-tv`; `participants: ["NIKOLAI", "ROACH", "TV"]` upper-case vs `members`/`core_members` lower-case
+Muse Spark
