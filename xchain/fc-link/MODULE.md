@@ -79,6 +79,17 @@ is a detail under the same signed requests. BLE provisioning (handing
 a new node its WiFi/cluster config over Bluetooth) is the underlay
 roadmap item for standing up fresh nodes with no network at all.
 
+Bluetooth router: Agape as a central Bluetooth hub - full IP
+networking over Bluetooth PAN, not just messaging. A hub shares its
+WiFi/Ethernet uplink to its PAN clients by routed NAT; clients with
+no other uplink can re-serve, so hubs chain leaf -> hub -> hub ->
+internet under signed announcements and one deterministic address
+plan (hub-0 keeps 192.168.79.0/24). Core: `bt_router.py` (topology,
+dnsmasq/nft renders, hub selection, chain planning, armed apply
+plan) + `test_bt_router.py`; design note: `BT-ROUTER.md`. Code only
+- live bring-up is an operator ceremony per box, on the founder's
+go.
+
 Status and the bar for shipping: v0 is the protocol core - client,
 executor, ledger, and a tested loopback reference adapter. Production
 wiring (Executor inside fclink.py's /jobs on each box) is on-box
